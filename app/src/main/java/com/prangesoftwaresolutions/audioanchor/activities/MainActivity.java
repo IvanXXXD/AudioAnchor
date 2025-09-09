@@ -342,4 +342,25 @@ public class MainActivity extends AppCompatActivity implements
         public long getSize() { return mSize; }
         public String getUri() { return mUri; }
     }
+// Clase simple solo para el escaneo de SD - NO modifica la existente
+public class SDAudioFile {
+    private String mName;
+    private String mUri;
+    private long mSize;
+    
+    public SDAudioFile(String name, String uri, long size) {
+        mName = name;
+        mUri = uri;
+        mSize = size;
+    }
+    
+    public String getName() { return mName; }
+    public String getUri() { return mUri; }
+    public long getSize() { return mSize; }
+    
+    @Override
+    public String toString() {
+        return mName;
+    }
+}
 }
