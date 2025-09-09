@@ -16,7 +16,6 @@ import android.content.pm.PackageManager;
 import android.database.Cursor;
 import android.net.Uri;
 import android.os.Build;
-import android.os.Bundle;
 import android.os.Environment;
 import android.os.IBinder;
 import android.provider.DocumentsContract;
@@ -89,6 +88,28 @@ public class MainActivity extends AppCompatActivity implements
             }
         }
     };
+
+    // Clase simple solo para el escaneo de SD (movida al principio)
+    public static class SDAudioFile {
+        private String mName;
+        private String mUri;
+        private long mSize;
+        
+        public SDAudioFile(String name, String uri, long size) {
+            mName = name;
+            mUri = uri;
+            mSize = size;
+        }
+        
+        public String getName() { return mName; }
+        public String getUri() { return mUri; }
+        public long getSize() { return mSize; }
+        
+        @Override
+        public String toString() {
+            return mName;
+        }
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -320,27 +341,5 @@ public class MainActivity extends AppCompatActivity implements
         super.onDestroy();
         // Código existente sin cambios
         LocalBroadcastManager.getInstance(this).unregisterReceiver(mMessageReceiver);
-    }
-
-    // Clase simple solo para el escaneo de SD
-    public class SDAudioFile {
-        private String mName;
-        private String mUri;
-        private long mSize;
-        
-        public SDAudioFile(String name, String uri, long size) {
-            mName = name;
-            mUri = uri;
-            mSize = size;
-        }
-        
-        public String getName() { return mName; }
-        public String getUri() { return mUri; }
-        public long getSize() { return mSize; }
-        
-        @Override
-        public String toString() {
-            return mName;
-        }
     }
 }
