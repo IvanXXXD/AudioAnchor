@@ -190,7 +190,7 @@ public class MainActivity extends AppCompatActivity implements
         }).start();
     }
 
-    private void scanDirectoryRecursively(DocumentFile directory, List<SDAudioFAudioFileoFiles) {
+    private void scanDirectoryRecursively(DocumentFile directory, List<SDAudioFile> audioFiles) {
         if (directory == null || !directory.exists()) return;
         
         for (DocumentFile file : directory.listFiles()) {
@@ -202,8 +202,7 @@ public class MainActivity extends AppCompatActivity implements
                 audioFiles.add(new SDAudioFile(
                     file.getName(),
                     file.getUri().toString(),
-                    file.length(),
-                    file.getUri().toString()
+                    file.length()
                 ));
             }
         }
@@ -227,7 +226,8 @@ public class MainActivity extends AppCompatActivity implements
         if (audioFiles.isEmpty()) {
             Utils.showToast(this, "No audio files found on SD card");
             return;
- isAudioFile      
+        }
+        
         Utils.showToast(this, "Found " + audioFiles.size() + " audio files on SD card");
         
         // TODO: Integrar con la base de datos existente
@@ -322,26 +322,25 @@ public class MainActivity extends AppCompatActivity implements
         LocalBroadcastManager.getInstance(this).unregisterReceiver(mMessageReceiver);
     }
 
-    // Clase interna AudioFile
-// Clase simple solo para el escaneo de SD - NO modifica la existente
-public class SDAudioFile {
-    private String mName;
-    private String mUri;
-    private long mSize;
-    
-    public SDAudioFile(String name, String uri, long size) {
-        mName = name;
-        mUri = uri;
-        mSize = size;
+    // Clase simple solo para el escaneo de SD
+    public class SDAudioFile {
+        private String mName;
+        private String mUri;
+        private long mSize;
+        
+        public SDAudioFile(String name, String uri, long size) {
+            mName = name;
+            mUri = uri;
+            mSize = size;
+        }
+        
+        public String getName() { return mName; }
+        public String getUri() { return mUri; }
+        public long getSize() { return mSize; }
+        
+        @Override
+        public String toString() {
+            return mName;
+        }
     }
-    
-    public String getName() { return mName; }
-    public String getUri() { return mUri; }
-    public long getSize() { return mSize; }
-    
-    @Override
-    public String toString() {
-        return mName;
-    }
-}
 }
