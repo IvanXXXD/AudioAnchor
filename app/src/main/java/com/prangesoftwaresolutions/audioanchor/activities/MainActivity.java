@@ -324,24 +324,6 @@ public class MainActivity extends AppCompatActivity implements
     }
 
     // Clase interna AudioFile
-    public class AudioFile {
-        private String mName;
-        private String mPath;
-        private long mSize;
-        private String mUri;
-        
-        public AudioFile(String name, String path, long size, String uri) {
-            mName = name;
-            mPath = path;
-            mSize = size;
-            mUri = uri;
-        }
-        
-        public String getName() { return mName; }
-        public String getPath() { return mPath; }
-        public long getSize() { return mSize; }
-        public String getUri() { return mUri; }
-    }
 // Clase simple solo para el escaneo de SD - NO modifica la existente
 public class SDAudioFile {
     private String mName;
