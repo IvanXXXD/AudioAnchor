@@ -163,7 +163,7 @@ public class MainActivity extends AppCompatActivity implements
             @Override
             public void run() {
                 try {
-                    List<AudioFile> audioFiles = new ArrayList<>();
+                    List<SDAudioFile> audioFiles = new ArrayList<>();
                     DocumentFile rootDir = DocumentFile.fromTreeUri(MainActivity.this, treeUri);
                     
                     if (rootDir != null && rootDir.exists()) {
@@ -190,7 +190,7 @@ public class MainActivity extends AppCompatActivity implements
         }).start();
     }
 
-    private void scanDirectoryRecursively(DocumentFile directory, List<AudioFile> audioFiles) {
+    private void scanDirectoryRecursively(DocumentFile directory, List<SDAudioFAudioFileoFiles) {
         if (directory == null || !directory.exists()) return;
         
         for (DocumentFile file : directory.listFiles()) {
@@ -199,7 +199,7 @@ public class MainActivity extends AppCompatActivity implements
                 scanDirectoryRecursively(file, audioFiles);
             } else if (isAudioFile(file)) {
                 // Añadir archivo de audio a la lista
-                audioFiles.add(new AudioFile(
+                audioFiles.add(new SDAudioFile(
                     file.getName(),
                     file.getUri().toString(),
                     file.length(),
@@ -223,12 +223,11 @@ public class MainActivity extends AppCompatActivity implements
                ));
     }
 
-    private void processAudioFiles(List<AudioFile> audioFiles) {
+    private void processAudioFiles(List<SDAudioFile> audioFiles) {
         if (audioFiles.isEmpty()) {
             Utils.showToast(this, "No audio files found on SD card");
             return;
-        }
-        
+ isAudioFile      
         Utils.showToast(this, "Found " + audioFiles.size() + " audio files on SD card");
         
         // TODO: Integrar con la base de datos existente
